@@ -13,10 +13,14 @@ function Home({
   selectedTagId,
   selectedPopularityQuery,
   userId,
+  handleAddPostNewTag
 }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const [chosenPostId, setChosenPostId] = useState(null);
+
 
   ///////////////////////////////////// handle query param /////////////////////////////////////
   searchParams.get('popularity');
@@ -30,10 +34,16 @@ function Home({
   ///////////////////////////////////// handle tag click /////////////////////////////////////
   const handleAddTagClick = (event, selectedPostId) => {
     setAnchorEl(event.currentTarget);
+    console.log("the event target is: ", event)
+    setChosenPostId(selectedPostId);
+    
   };
 
   const handleMenuClose = (selectedOption) => {
     setAnchorEl(null);
+    handleAddPostNewTag(chosenPostId, selectedOption)
+    setChosenPostId(null);
+    console.log("the option is: ", selectedOption)
   };
 
   const handleTagClick = (tagName, tagId) => {};
@@ -52,6 +62,7 @@ function Home({
             userId={userId}
             handleTagClick={handleTagClick}
             selectedTagId={selectedTagId}
+            clapNum={post.clapsArr ? post.clapsArr : []}
           />
         ))}
       </List>

@@ -10,6 +10,10 @@ import {
 import ClappingIcon from './assets/ClappingIcon';
 import AddTagButton from './AddTagButton';
 import Tag from './Tag';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
+const baseURL = 'http://localhost:3080';
 
 function Post({
   postId,
@@ -20,6 +24,7 @@ function Post({
   handleTagClick,
   selectedTagId,
   userId,
+  clapNum
 }) {
   const getTagsByPostId = (postID) => {
     const tagsArr = [];
@@ -30,6 +35,41 @@ function Post({
     }
     return tagsArr;
   };
+  const [clapNumber, setClapNumber] = useState(0);
+
+
+
+  const caculateClaps = (clapArr) => {
+      console.log("clpas Arr: ", clapArr)
+      let claps = Object.values(clapArr).reduce((prevVal, currVal) => prevVal + currVal, 0)
+      setClapNumber(claps)
+    }
+
+
+  useEffect(() => {
+    caculateClaps(clapNum);
+  },[clapNum])
+
+
+
+  const clickClap = () => {
+    axios
+    .post(`${baseURL}/posts/${postId}/clap`)
+    .then((response) => {
+      console.log(response.data)
+      caculateClaps(response.data.Posts)
+      // setTags({ ...response.data['Tags'] });
+      // const tagsList = [];
+      // for (const tagName in response.data['Tags']) {
+      //   tagsList.push(tagName);
+      // }
+      // setTagsList(tagsList);
+      // handleAlert('Tag was added successfully', true, 'success');
+    })
+    .catch((error) => {
+      // handleAlert(error.message, true, 'error');
+    });
+  }
 
   const tagsNameArr = getTagsByPostId(postId);
   const isTag = tagsNameArr.length > 0 ? true : false;
@@ -79,6 +119,7 @@ function Post({
             aria-label='clapping'
             size='small'
             data-testid={`postClapsBtn-${postId}`}
+            onClick={() => clickClap()}
           >
             <ClappingIcon
               didUserClappedOnPost={didUserClappedOnPost}
@@ -86,7 +127,7 @@ function Post({
             />
           </IconButton>
           <Typography variant='string' data-testid={`postClapsNum-${postId}`}>
-            0
+            {clapNumber}
           </Typography>
         </CardActions>
       </Card>

@@ -69,3 +69,25 @@ app.post('/tags/tagName/:tagName', cors(corsOptions), (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+app.post('/tags/:postId/:tagName', cors(corsOptions), (req, res) => {
+  const userId = req.cookies?.userId;
+  if (!userId) {
+    res.status(403).end();
+    return;
+  }
+  const { tagName, postId} = req.params;
+  console.log("in place", tagName, postId)
+  if (Tags[tagName]) {
+    if (Tags[tagName][postId]) {
+      res.status(400).end();
+      return;
+    } else {
+      Tags[tagName][postId] = true;
+    }
+  } else {
+    res.status(403).end();
+      return;
+  }
+  res.send({ Tags }).status(200).end();
+});

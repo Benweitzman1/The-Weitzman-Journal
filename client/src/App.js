@@ -155,6 +155,24 @@ function App() {
       });
   };
 
+
+  const handleAddPostNewTag = (postId, tagName) => {
+    axios
+    .post(`${baseURL}/tags/${postId}/${tagName}`)
+    .then((response) => {
+      setTags({ ...response.data['Tags'] });
+      const tagsList = [];
+      for (const tagName in response.data['Tags']) {
+        tagsList.push(tagName);
+      }
+      setTagsList(tagsList);
+      handleAlert('Tag was added successfully', true, 'success');
+    })
+    .catch((error) => {
+      handleAlert(error.message, true, 'error');
+    });
+  }
+
   ///////////////////////////////////// handle click events /////////////////////////////////////
   const handlePopularityClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -254,6 +272,7 @@ function App() {
                 selectedTagId={selectedTagId}
                 selectedPopularityQuery={selectedPopularityQuery}
                 userId={userId}
+                handleAddPostNewTag={handleAddPostNewTag}
               />
             }
           />
