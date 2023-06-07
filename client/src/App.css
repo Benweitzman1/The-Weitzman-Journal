@@ -1,0 +1,103 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 15px;
+  padding-top: 30px;
+  position: relative;
+}
+
+.post {
+  width: 100%;
+}
+
+.MuiButtonBase-root.MuiListItemButton-root {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.MuiCardActions-root {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container > .MuiContainer-root {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.tagsListContainer {
+  position: sticky;
+  top: 94px;
+}
+
+.tagsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.MuiCardActions-root > .MuiButtonBase-root.MuiFab-root.Mui-disabled.Badge {
+  font-size: 13px;
+  font-weight: 400;
+  box-shadow: none;
+  height: 25px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.MuiCardActions-root > .Badge {
+  font-size: 13px;
+  font-weight: 200;
+  box-shadow: none;
+  height: 25px;
+}
+
+.MuiTooltip-tooltip {
+  font-size: 200;
+}
+
+.tagsList > .Badge {
+  font-size: 13px;
+  font-weight: 400;
+  box-shadow: none;
+}
+
+.form {
+  margin-top: 30px;
+  width: 50%;
+  padding: 10px;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 30px;
+  width: 95%;
+}
+
+.formTitle {
+  width: 100%;
+  align-self: center;
+  text-decoration: underline;
+}
+
+.visibilityHidden {
+  visibility: hidden;
+}
+
+.clappingIconGray > path {
+  fill: gray;
+}
+
+.clappingIconBlue > path {
+  fill: blue;
+}

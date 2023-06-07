@@ -1,0 +1,33 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "start": "lerna run start --stream",
+    "test": "npx playwright test",
+    "test:example": "npx playwright test tests/exampleTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/wix-private/enter_2023_exam_blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wix-private/enter_2023_exam_blog/issues"
+  },
+  "homepage": "https://github.com/wix-private/enter_2023_exam_blog#readme",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.32.3",
+    "@playwright/test": "^1.32.3",
+    "lerna": "^6.6.2"
+  },
+  "workspaces": [
+    "client/",
+    "server/"
+  ]
+}
