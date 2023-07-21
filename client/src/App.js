@@ -326,6 +326,7 @@ function App() {
                 userId={userId}
                 handleAddTagToPost={handleAddTagToPost}
                 handleAddClapToPost={handleAddClapToPost}
+                selectedTagQuery={selectedTagQuery}
                 selectedTagQueryToFilter={selectedTagQueryToFilter}
                 validClap={validClap}
                 // selectedPostId={selectedPostId}

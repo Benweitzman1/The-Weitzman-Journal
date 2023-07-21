@@ -15,12 +15,14 @@ function Home({
   userId,
   handleAddTagToPost,
   handleAddClapToPost,
+  selectedTagQuery,
   selectedTagQueryToFilter,
   validClap
   // selectedPostIdAfterUpdate,
   // postsAfterUpdate
   //got till here, show Daniel
 }) {
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -34,10 +36,19 @@ function Home({
   searchParams.get('popularity');
 
   useEffect(() => {
+    const searchParams = new URLSearchParams();
+  
     if (selectedPopularityQuery !== '') {
-      setSearchParams({ popularity: `${selectedPopularityQuery}` });
+      searchParams.set('popularity', selectedPopularityQuery);
     }
-  }, [selectedPopularityQuery, setSearchParams]);
+  
+    if (selectedTagQuery !== '') {
+      searchParams.set('tag', selectedTagQuery);
+    }
+  
+    setSearchParams(searchParams.toString());
+  }, [selectedPopularityQuery, selectedTagQuery, setSearchParams]);
+
 
   ///////////////////////////////////// handle tag click /////////////////////////////////////
   const handleAddTagClick = (event, selectedPostId) => {

@@ -35,15 +35,17 @@ app.get('/user', cors(corsOptions), (req, res) => {
 app.get('/posts', cors(corsOptions), (req, res) => {
   console.log(req.query)
   const popularity = Number(req.query.popularity);
-  const tag = Number(req.query.tag);
+  const tag = req.query.tag;
   let filteredPosts = Posts
 
   if (popularity) {
     // TODO - implement popularity filter functionality here
+    console.log({popularity})
     filteredPosts = filteredPosts.filter(post => post.postClapsCount >= popularity)
     // End of TODO
   }
   if(tag){
+    console.log({tag})
     filteredPosts = filteredPosts.filter(post => Tags[tag][post.id] === true)
   }
 

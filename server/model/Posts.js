@@ -41,7 +41,7 @@ const Posts = [
         title: 'Exploring the Beauty of Bali',
         content: 'Bali is a paradise on earth, known for its stunning beaches, lush landscapes, and vibrant culture. Discover the best places to visit in Bali...',
         userId: "14",
-        postClapsCount: 312,
+        postClapsCount: 0,
       },
 ];
 
