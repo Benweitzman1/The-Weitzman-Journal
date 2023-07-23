@@ -2,7 +2,7 @@ import axios from 'axios';
 import './App.css';
 import Home from './pages/Home';
 import AddNewPost from './pages/AddNewPost';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import {
   Typography,
@@ -21,12 +21,11 @@ import FloatingMenu from './components/FloatingMenu';
 function App() {
   const baseURL = 'http://localhost:3080';
   const popularityOptions = [1, 5, 20, 100];
-  // const navigate = useNavigate();
   
   const [userId, setUserId] = useState('');
   
   const [selectedPopularityQuery, setSelectedPopularityQuery] = useState('');
-  const [selectedTagQuery, setSelectedTagQuery] = useState('');
+  const [selectedTagQuery, setSelectedTagQuery] = useState([]);
   
   const [allPosts, setAllPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
@@ -84,14 +83,13 @@ function App() {
       });
   }, []);
 
-  const getFilteredPosts = (popularity, tag) => {
-    console.log("got here")
-    console.log(popularity, tag)
-    
+  const getFilteredPosts = (popularity, tags) => {
+    console.log({popularity})
+    console.log({tags})
     axios
       .get(`${baseURL}/posts`, {params: {
         popularity: popularity,
-        tag: tag}
+        tags: tags}
       })
       .then((response) => {
         setFilteredPosts([...response.data['Posts']]);
@@ -240,9 +238,9 @@ function App() {
   };
 
 
-  const selectedTagQueryToFilter = (selectedTagQueryToFilter) => {
-    setSelectedTagQuery(selectedTagQueryToFilter)
-    getFilteredPosts(selectedPopularityQuery, selectedTagQueryToFilter)
+  const selectedTagQueryToFilter = (tags) => {
+    // setSelectedTagQuery(tags)
+    getFilteredPosts(selectedPopularityQuery, tags)
   }
   ///////////////////////////////////// render components /////////////////////////////////////
   const renderToolBar = () => {
@@ -326,9 +324,9 @@ function App() {
                 userId={userId}
                 handleAddTagToPost={handleAddTagToPost}
                 handleAddClapToPost={handleAddClapToPost}
-                selectedTagQuery={selectedTagQuery}
                 selectedTagQueryToFilter={selectedTagQueryToFilter}
                 validClap={validClap}
+                // selectedTagQuery={selectedTagQuery}
                 // selectedPostId={selectedPostId}
                 // posts={posts}
               />

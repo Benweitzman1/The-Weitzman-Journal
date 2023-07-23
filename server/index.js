@@ -35,18 +35,23 @@ app.get('/user', cors(corsOptions), (req, res) => {
 app.get('/posts', cors(corsOptions), (req, res) => {
   console.log(req.query)
   const popularity = Number(req.query.popularity);
-  const tag = req.query.tag;
+  const tags = req.query.tags;
+  console.log(tags)
+  
   let filteredPosts = Posts
 
   if (popularity) {
-    // TODO - implement popularity filter functionality here
     console.log({popularity})
     filteredPosts = filteredPosts.filter(post => post.postClapsCount >= popularity)
-    // End of TODO
   }
-  if(tag){
-    console.log({tag})
-    filteredPosts = filteredPosts.filter(post => Tags[tag][post.id] === true)
+  if (tags) {
+    if (Array.isArray(tags)) {
+      filteredPosts = filteredPosts.filter((post) => {
+        return tags.every((tag) => Tags[tag] && Tags[tag][post.id]);
+      });
+    } else {
+      filteredPosts = filteredPosts.filter((post) => Tags[tags] && Tags[tags][post.id]);
+    }
   }
 
   res.send({ Posts: filteredPosts });
@@ -95,36 +100,6 @@ app.post('/tags/:postId/:tagName', cors(corsOptions), (req, res) => {
 
   res.send({ Tags }).status(200).end();
 });
-
-// app.post('/posts/:postId', cors(corsOptions), (req, res) => {
-//   console.log("11111111111111111")
-//   const userId = req.cookies?.userId;
-//   if (!userId) {
-//     res.status(403).end();
-//     return;
-//   }
-//   const { postId } = req.params;
-//   const indexOfThePost = Posts.findIndex(post => post.id === postId);
-//   Posts[indexOfThePost].claps = Object.assign(Posts[indexOfThePost].claps, {userId : 4})
-//   console.log(Posts[indexOfThePost].claps)
-  
-//   if (!currPost) {
-//     res.status(400).end();
-//     return;
-//   }
-//   if (Posts[indexOfThePost].claps.userId){
-//     if(Number(Posts[indexOfThePost].claps.userId) >= 5){
-//       res.status(400).end();
-//     }
-//     else{
-//       console.log(Posts[indexOfThePost][claps][userId]);
-//       Posts[indexOfThePost][claps][userId] = Number(Posts[indexOfThePost][claps][userId]) + 1;
-//       console.log(Posts[indexOfThePost][claps][userId]);
-//     }
-//   }
-
-//   res.send({ Posts }).status(200).end();
-// });
 
 app.post('/posts/clap/:selectedPostId', cors(corsOptions), (req, res) => {
   const userId = req.cookies?.userId;
