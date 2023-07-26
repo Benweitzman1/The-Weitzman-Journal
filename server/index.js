@@ -23,7 +23,7 @@ const corsOptions = {
 };
 
 app.get('/', cors(corsOptions), (req, res) => {
-  res.send('Welcome to your Wix Enter exam!');
+  res.send('Welcome to The Weitzman Journal!');
 });
 
 app.get('/user', cors(corsOptions), (req, res) => {
@@ -133,8 +133,22 @@ app.post('/posts/clap/:selectedPostId', cors(corsOptions), (req, res) => {
     else{
       Users.get(userId).clapsCount += 1
       Users.get(userId).userPostClap.push(selectedPostId)
-      postInd = Posts.indexOf(Posts.filter(post => post.id === selectedPostId)[0])
-      Posts[postInd].postClapsCount += 1;
+      newPost = Posts.filter(post => post.id === selectedPostId)[0]
+      newPostInd = Posts.indexOf(newPost)
+      console.log("----------------------------------------------------------")
+      console.log({selectedPostId})
+      console.log("----------------------------------------------------------")
+      console.log({newPost})
+      console.log("----------------------------------------------------------")
+      console.log({newPostInd})
+      console.log("----------------------------------------------------------")
+      console.log(Posts)
+      console.log("----------------------------------------------------------")
+      console.log(Posts[newPostInd])
+      console.log("----------------------------------------------------------")
+      console.log(Posts[newPostInd].postClapsCount)
+      console.log("----------------------------------------------------------")
+      Posts[newPostInd].postClapsCount += 1;
     }
   }
   else {
@@ -142,8 +156,8 @@ app.post('/posts/clap/:selectedPostId', cors(corsOptions), (req, res) => {
       userPostClap: [selectedPostId],
       clapsCount: 1
     })
-    postInd = Posts.indexOf(Posts.filter(post => post.id === selectedPostId)[0])
-    Posts[postInd].postClapsCount += 1;
+    newPostInd = Posts.indexOf(Posts.filter(post => post.id === selectedPostId)[0])
+    Posts[newPostInd].postClapsCount += 1;
   }
 
   console.log(Users)
@@ -171,8 +185,11 @@ app.post('/posts', cors(corsOptions), (req, res) => {
     const maxId = Math.max(...postsIds);
     newId = maxId + 1
   }
+
+  strNewId = '' + newId
+  console.log({strNewId})
   
-  const newPost = {id: newId, title: title, content: content, userId: userId, postClapsCount: 0};
+  const newPost = {id: strNewId, title: title, content: content, userId: userId, postClapsCount: 0};
   Posts.push(newPost);
   console.log(Posts)
   
@@ -181,8 +198,8 @@ app.post('/posts', cors(corsOptions), (req, res) => {
   }
 
   if (selectedTag){
-    console.log("selectedTag", selectedTag)
-    console.log("newId",newId)
+    console.log({selectedTag})
+    console.log({newId})
     Tags[selectedTag][newId] = true;
     console.log(Tags)
   }

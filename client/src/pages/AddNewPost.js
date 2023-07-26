@@ -15,7 +15,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
-function AddNewPost({ handleAddPost }) {
+function AddNewPost({ addPost }) {
   const tagsList = ['Server', 'Frontend', 'Security', 'Analytics', 'Mobile']; // mock tags data
 
   const navigate = useNavigate();
@@ -23,6 +23,13 @@ function AddNewPost({ handleAddPost }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
+
+  const handleAddPost = () => {
+    console.log({title, content, selectedTag})
+    addPost(title, content, selectedTag)
+    navigate('/');
+  }
+
 
   return (
     <div className='container'>
@@ -112,6 +119,7 @@ function AddNewPost({ handleAddPost }) {
             variant='contained'
             size='large'
             data-testid='addNewPost-submitBtn'
+            onClick={handleAddPost}
           >
             submit
           </Button>

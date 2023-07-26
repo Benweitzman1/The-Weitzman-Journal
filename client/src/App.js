@@ -149,7 +149,7 @@ function App() {
         setFilteredPosts([...Posts]);
         
         handleAlert('post was made successfully', true, 'success');});
-        // navigate('/');
+
   };
 
   const addNewTag = (tagName) => {
@@ -307,7 +307,7 @@ function App() {
           <Route
             path='/add-new-post'
             element={<AddNewPost
-              handleAddPost={addPost}
+              // handleAddPost={addPost}
               addPost={addPost}
               />}
           />

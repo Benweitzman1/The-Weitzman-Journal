@@ -1,5 +1,5 @@
 {
-  "name": "blog",
+  "name": "the-weitzman-journal",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/wix-private/enter_2023_exam_blog.git"
+    "url": "git+ssh://git@github.com/Benweitzman1-private/The-Weitzman-Journal.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wix-private/enter_2023_exam_blog/issues"
+    "url": "https://github.com/Benweitzman1-private/The-Weitzman-Journal/issues"
   },
-  "homepage": "https://github.com/wix-private/enter_2023_exam_blog#readme",
+  "homepage": "https://github.com/Benweitzman1-privateThe-Weitzman-Journal#readme",
   "dependencies": {
     "uuid": "^9.0.0"
   },
