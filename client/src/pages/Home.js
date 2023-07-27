@@ -4,6 +4,7 @@ import TagsCloud from '../components/TagsCloud';
 import Post from '../components/Post';
 import { useState, useEffect } from 'react';
 import { useNavigate  } from 'react-router-dom';
+import Logo from '../components/assets/Logo';
 
 function Home({
   Posts,
@@ -146,19 +147,26 @@ function Home({
           />
         ))}
       </List>
-      <TagsCloud
-        tagsList={tagsList}
-        handleAddNewTag={handleAddNewTag}
-        selectedTagId={selectedTagId}
-        handleTagClick={handleTagClick}
-      />
-      <FloatingMenu
-        menuOptions={tagsList}
-        anchorElement={anchorEl}
-        handleMenuClose={handleMenuClose}
-      />
+        <div className='tagsListContainer'>
+          <TagsCloud
+            tagsList={tagsList}
+            handleAddNewTag={handleAddNewTag}
+            selectedTagId={selectedTagId}
+            handleTagClick={handleTagClick}
+          />
+            <div className='logoContainer'>
+              <Logo style={{ width: '80px', height: '80px' }} />
+            </div>
+        </div>
+        <FloatingMenu
+          menuOptions={tagsList}
+          anchorElement={anchorEl}
+          handleMenuClose={handleMenuClose}
+        />
     </div>
   );
 }
 
 export default Home;
+
+

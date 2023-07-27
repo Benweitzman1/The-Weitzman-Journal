@@ -130,3 +130,5 @@ function AddNewPost({ addPost }) {
 }
 
 export default AddNewPost;
+
+

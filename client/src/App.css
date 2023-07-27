@@ -10,6 +10,8 @@
   padding: 15px;
   padding-top: 30px;
   position: relative;
+  max-width: 1200px; /* Limit the maximum width of the container */
+  margin: 0 auto; /* Center the container */
 }
 
 .post {
@@ -32,8 +34,42 @@
 }
 
 .tagsListContainer {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 10px;
   position: sticky;
   top: 94px;
+}
+
+.logoContainer {
+  width: 550px;
+  height: 390px;
+  opacity: 1;
+  pointer-events: none;
+  z-index: -1;
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  background: url('./components/assets/Logo.png') no-repeat; /* Corrected relative path */
+  background-size: cover;
+}
+
+.logoContainer .logoImage {
+  transform: scale(0.8);
+}
+
+.tagsListAndLogoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-top: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: sticky;
+  top: 94px;
+  width: 100%;
 }
 
 .tagsList {
@@ -42,6 +78,8 @@
   gap: 15px;
   padding-top: 10px;
 }
+
+
 
 .MuiCardActions-root > .MuiButtonBase-root.MuiFab-root.Mui-disabled.Badge {
   font-size: 13px;
@@ -66,6 +104,7 @@
   font-size: 13px;
   font-weight: 400;
   box-shadow: none;
+  
 }
 
 .form {

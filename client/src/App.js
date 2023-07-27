@@ -265,7 +265,7 @@ function App() {
             </Button>
           </ButtonGroup>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            Enter 2023 Blog Exam
+            The Weitzman Journal
           </Typography>
           <ButtonGroup variant='text' aria-label='text button group'>
             <Button
