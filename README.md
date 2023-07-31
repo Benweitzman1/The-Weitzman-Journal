@@ -1,6 +1,6 @@
 # The Weitzman Journal
 
-![Project Logo](client/src/components/assets/Logo.png)
+![Project Logo](client/src/components/assets/Logo-For-README.png)
 
 ## Table of Contents
 
