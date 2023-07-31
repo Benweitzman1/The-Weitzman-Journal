@@ -44,15 +44,21 @@ Before running this project, ensure you have the following installed:
    git clone https://github.com/Benweitzman1/The-Weitzman-Journal.git
    ```
 2. Change into the project directory:
-   `cd The-Weitzman-Journal`
+   ```
+   cd The-Weitzman-Journal
+   ```
 
-3. Install dependencies:
-   `npm install`
+4. Install dependencies:
+   ```
+   npm install
+   ```
 
 ## Usage
 
 Start the application:
-`npm start`
+```
+npm start
+```
 
 ## API Endpoints
 
