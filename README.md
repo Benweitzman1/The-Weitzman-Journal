@@ -1,54 +1,108 @@
-# Welcome to your Wix Enter exam
+# The Weitzman Journal
 
-## Prerequisites:
-- NPM (version 8 or 9)
-- Node (version 18)
+![Project Logo](client/src/components/assets/Logo.png)
 
-## Instructions
-- open a terminal and navigate to this project's dir
-- run `npm install` (in case of errors check the troubleshooting section of this README)
-- run `npm start`
-- to check out example tests run `npm test` while your app is running
+## Table of Contents
 
-## Submitting exam instructions
-When you're ready to submit your exam:
-1. Open the project's directory in your terminal
-2. Delete `node_modules`
-   1. run `rm -rf node_modules`
-   2. run `rm -rf client/node_modules`
-   3. run `rm -rf server/node_modules`
-3. zip your project's directory
-4. email your zip file to `wixenter@wix.com`
-   1. You should preferably send this email from the email you used to apply to Wix Enter
-   2. The title should be `Wix Enter exam submission - {Your full name}`
-   3. The content should include `email: {The email address you used for your application}`
+- [Introduction](#introduction)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [Future Possibilities and Improvements](#Future-Possibilities-and-Improvements-)
 
-## Requirements:
+## Introduction
 
-### Tags:
+The Weitzman Journal is a full-stack blog application that allows users to read and create posts on various topics.
+The project consists of both a client-side (React) and server-side (Node.js) implementation.
 
-1. Implement the add tag functionality to a post. You'll notice that currently the “+” sign to add a tag to a post will open a Select component with hardcoded options, but clicking on them will do nothing. 
-> you can look at the tags list implementation (for both the **client** and **server** side) for an example. 
+![Screenshot of the Application](client/src/components/assets/Home-Page-Screenshot.png)
 
-### Claps - Part 1:
-1. Implement claps behavior - up to 5 claps per user are allowed
-> note that the `userId` of any api call is already available for you as a cookie on the **server** side.
-### Filter:
+## Features
 
-1. By popularity - clicking on popularity from the menu should change the url and show only posts with higher popularity (claps). Currently clicking on a dropdown item will redirect but no filtering will occur
-2. By tag - Clicking on a tag from the tags list, or from a post's tags should change the url and show only posts with the selected tag. Currently clicking on them does nothing
-3. Support filtering by both tag and popularity by url, for example `tag=frontend&popularity=20`. If a user clicks on a tag from the tags list, and then on popularity, both should be in the url
-4. Mark the selected tag and/or popularity option using the components' apis, selected tag color should be `primary`.
+- View Posts: Users can view blog posts on various topics. Posts can be filtered based on popularity and tags.
+- Create New Posts: Users can create new posts by providing a title, content, and selecting relevant tags. Each post can have multiple tags associated with it.
+- Clap for Posts: Users can show appreciation for posts by clapping for them. However, a user is limited to a maximum of five claps per post.
+- Tags Management: Tags play a crucial role in organizing posts. Users can view all available tags and create new tags for categorizing posts.
+- (Add more features if applicable)
 
-### Add post:
+## Prerequisites
 
-1. Clicking on the submit button should not submit anything if required fields are empty. Instead an empty required field should indicate an error
-2. Use actual tags instead of hardcoded ones
-3. Should submit when all required fields are filled, and then redirect to the home page
-4. Bonus - limit the title to 100 characters and show an error message for longer values
+Before running this project, ensure you have the following installed:
 
-### Claps - Part 2:
+- Node.js
+- npm or yarn
+- MongoDB
 
-1. Add a `My Claps` button to the header menu, should have `data-testid=myClapsBtn`. Clicking on that button will filter only posts that the user clapped for, and not other users. To simulate multiple users, you can just browse the app from different browsers, or clear the user cookie
-2. Bonus - claps button should support debounce behavior with 500ms
-3. Bonus - provide an ellipsis solution for content longer than 300 characters with a read more button. Read more button should have `data-testid=postContent-readMoreButton`
+## Installation
+
+1. Clone the repository to your local machine:
+   ```bash
+   git clone https://github.com/Benweitzman1/The-Weitzman-Journal.git
+   ```
+2. Change into the project directory:
+   `cd The-Weitzman-Journal`
+
+3. Install dependencies:
+   `npm install`
+
+## Usage
+
+Start the application:
+`npm start`
+
+## API Endpoints
+
+- GET /
+
+  - Description: Welcome message.
+
+- GET /user
+
+  - Description: Get a unique user ID or set a new one using cookies.
+
+- GET /posts
+
+  - Description: Retrieve posts based on popularity and tags.
+
+- GET /tags
+
+  - Description: Retrieve all available tags.
+
+- POST /tags/tagName/:tagName
+
+  - Description: Create a new tag.
+
+- POST /tags/:postId/:tagName
+
+  - Description: Add a tag to a specific post.
+
+- POST /posts/clap/:selectedPostId
+
+  - Description: Clap for a post.
+
+- POST /posts
+  - Description: Create a new post.
+
+## Technologies Used
+
+Frontend: React, React Router, Material-UI, Axios
+Backend: Node.js, Express.js, MongoDB
+Others: CORS, Cookie-parser
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, feel free to open an issue or create a pull request.
+
+## Future Possibilities and Improvements
+
+1. User Authentication: Implement user authentication to allow users to create accounts and log in to access personalized features such as bookmarking favorite posts or creating drafts.
+2. Commenting System: Add a commenting system to enable users to leave comments on posts and engage in discussions.
+3. Search Functionality: Implement a search feature to allow users to search for posts based on keywords or topics.
+4. Pagination: Add pagination to handle large numbers of posts and improve overall performance.
+5. User Profiles: Create user profiles where users can view their own posts, claps, and activity.
+6. Rich Text Editor: Enhance the post creation process by integrating a rich text editor for formatting posts.
+7. Social Media Sharing: Allow users to share posts on social media platforms to increase the blog's reach.

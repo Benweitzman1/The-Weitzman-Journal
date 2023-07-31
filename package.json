@@ -4,9 +4,7 @@
   "private": true,
   "description": "",
   "scripts": {
-    "start": "lerna run start --stream",
-    "test": "npx playwright test",
-    "test:example": "npx playwright test tests/exampleTests"
+    "start": "lerna run start --stream"
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,6 @@ const Tags = {
         "11":true
     },
     "Frontend": {}, 
-    // "tag": 
 };
 
 module.exports = { Tags };
